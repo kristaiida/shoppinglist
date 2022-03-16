@@ -59,25 +59,15 @@ function App() {
   return (
     <div>
       <h3>Shopping list</h3>
+        <form onSubmit={save}>
+        <label>New item</label>
+        <input value={item} onChange={e => setItem(e.target.value)} />
+        <input value={amount} onChange={e => setAmount(e.target.value)} />
+        <button>Add</button>
+        </form>
       <ol>
-        {tasks?.map(task =>(
-          <li key={task.id}>
-            {editTask?.id !== task.id &&
-            task.description
-            }
-            {editTask?.id === task.id &&
-            <form onSubmit={update}>
-              <input value={editDescription} onChange={e => setEditDescription(e.target.value)}/>
-              <button>Save</button>
-              <button type="button" onClick={() => setEditedTask(null)}>Cancel</button>
-            </form>
-            }
-            <a className="delete" onClick={() => remove(task.id)} href="#">Delete</a>&nbsp;
-            {editTask === null && 
-            <a className="edit" onClick={() => setEditedTask(task)} href="#">
-            </a>
-            }
-          </li>
+        {items?.map(item => (
+          <li key={item.description}>{item.amount}</li>
         ))}
       </ol>
     </div>
